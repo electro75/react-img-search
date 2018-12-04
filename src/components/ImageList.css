@@ -4,9 +4,9 @@
     /* repeat creates a set number of columns, auto fill decides how many columns to insert, 
         minmax: minimum: 250px, maximum-allocation-of-space : 1 fr === equally sized. */
     /* grid-gap: 0 10px; */
-    grid-auto-rows: 10px;
+    grid-auto-rows: 20px;
 }
 
 .image-list img {
-    width: 250px;
+    width: 275px;
 }
