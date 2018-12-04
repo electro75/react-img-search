@@ -5,28 +5,18 @@ import ImageList from './ImageList';
 
 class App extends React.Component {
 
-    state = { images: [], page: 0, term: '' };
+    state = { images: [], page: 0, term: ''};
 
     constructor(props) {
         super(props);
 
         window.onscroll = () => {
-            const {
-                loadUsers,
-                
-              } = this;
-        
-              // Bails early if:
-              // * there's an error
-              // * it's already loading
-              // * there's nothing left to load
-        
-              // Checks that the page has scrolled to the bottom
-              if ( window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight ) {
-                  console.log('load next');
-                  this.onSearchSubmit(this.state.term, (this.state.page + 1))
-              }
+            if(window.innerHeight + document.documentElement.scrollTop === this.containerRef.current.clientHeight) {
+                this.onSearchSubmit(this.state.term, (this.state.page + 1))
             }
+        }
+
+        this.containerRef = React.createRef();
     }
 
     // async await syntax used to make the asynchronous request.
@@ -37,11 +27,12 @@ class App extends React.Component {
         });
 
         this.setState({images: this.state.images.concat(response.data.results), page, term});
+        
     }
 
     render() {
         return (
-            <div className="ui container" style={{marginTop: '10px'}} >
+            <div className="ui container" ref={this.containerRef}>
                 <SearchBar onSubmit={ this.onSearchSubmit } />
                 <ImageList images={ this.state.images }/>
             </div>
