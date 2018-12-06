@@ -12,7 +12,7 @@ class App extends React.Component {
 
         window.onscroll = () => {
             if(window.innerHeight + document.documentElement.scrollTop === this.containerRef.current.clientHeight) {
-                this.onSearchSubmit(this.state.term, (this.state.page + 1))
+                this.onSearchSubmit(this.state.term, (this.state.page + 1), 'addon')
             }
         }
 
@@ -21,12 +21,17 @@ class App extends React.Component {
 
     // async await syntax used to make the asynchronous request.
     // onSearchSubmit is refactored into an arrow function to fix the context of 'this'.
-    onSearchSubmit = async (term, page) => {
+    onSearchSubmit = async (term, page, type) => {
         const response = await unsplash.get('/search/photos', {
             params: { query: term, page },
         });
 
-        this.setState({images: this.state.images.concat(response.data.results), page, term});
+        if(type === 'reload') {
+            this.setState({images: response.data.results, page, term});
+        } else {
+            this.setState({images: this.state.images.concat(response.data.results), page, term});
+        }
+        
         
     }
 
