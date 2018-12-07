@@ -36,8 +36,7 @@ class ImageCard extends React.Component {
 
         return (
             <div style={{gridRowEnd: `span ${this.state.spans}`,
-                        textAlign:'center',
-                        marginTop: '20px'}} className="iron-image-container">
+                        textAlign:'center'}} className="iron-image-container">
                 <div className="iron-image-loaded" 
                     ref={imageLoadedElem => this.newImghd = imageLoadedElem}>
                 </div>

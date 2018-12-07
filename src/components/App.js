@@ -20,6 +20,7 @@ class App extends React.Component {
             console.log('innerHeight: ', window.innerHeight);
             console.log('scrolltop: ', document.documentElement.scrollTop);
             console.log('container: ', this.containerRef.current.clientHeight);
+            console.log(`${window.innerHeight } + ${document.documentElement.scrollTop} ?= ${this.containerRef.current.clientHeight}`)
             if(window.innerHeight + document.documentElement.scrollTop === this.containerRef.current.clientHeight) {
                 this.onSearchSubmit(this.state.term, (this.state.page + 1), 'addon')
             }
