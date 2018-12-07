@@ -36,12 +36,16 @@ class ImageCard extends React.Component {
 
         return (
             <div style={{gridRowEnd: `span ${this.state.spans}`,
-                        textAlign:'center'}} className="iron-image-container">
-                <div className="iron-image-loaded" 
+                        textAlign:'center'}} className="iron-image-container ui fade reveal image">
+                <div className="iron-image-loaded visible content" 
                     ref={imageLoadedElem => this.newImghd = imageLoadedElem}>
                 </div>
-                <div    className="iron-image-preload" 
-                        style={{ backgroundImage: `url('${this.props.image.urls.thumbnail}')` }}>
+                <div className="iron-image-preload visible content" 
+                     style={{ backgroundImage: `url('${this.props.image.urls.small}')` }}>
+                </div>
+
+                <div className="hidden content" style={{backgroundColor: `${ this.props.image.color }`, opacity: '0.5'}}>
+
                 </div>
             </div>
         )

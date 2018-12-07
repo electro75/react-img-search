@@ -33,6 +33,8 @@ class App extends React.Component {
             params: { query: term, page },
         });
 
+        console.log(response)
+
         if(type === 'reload') {
             this.setState({images: response.data.results, page, term, isLoading: false});
         } else {
