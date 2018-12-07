@@ -17,10 +17,6 @@ class App extends React.Component {
         super(props);
 
         window.onscroll = () => {
-            console.log('innerHeight: ', window.innerHeight);
-            console.log('scrolltop: ', document.documentElement.scrollTop);
-            console.log('container: ', this.containerRef.current.clientHeight);
-            console.log(`${window.innerHeight } + ${document.documentElement.scrollTop} ?= ${this.containerRef.current.clientHeight}`)
             if(window.innerHeight + document.documentElement.scrollTop === this.containerRef.current.clientHeight) {
                 this.onSearchSubmit(this.state.term, (this.state.page + 1), 'addon')
             }
@@ -41,6 +37,7 @@ class App extends React.Component {
             this.setState({images: response.data.results, page, term, isLoading: false});
         } else {
             this.setState({images: this.state.images.concat(response.data.results), page, term, isLoading: false});
+            
         }
         
         
