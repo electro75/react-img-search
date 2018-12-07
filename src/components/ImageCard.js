@@ -18,7 +18,7 @@ class ImageCard extends React.Component {
         hdImg.onload = () => {
             this.newImghd.setAttribute(
                 'style',
-                `background-image: url('${this.props.image.urls.regular}')`
+                `background-image: url('${this.props.image.urls.regular}')`,
             );
 
             this.newImghd.classList.add('image-fade-in');
@@ -40,12 +40,8 @@ class ImageCard extends React.Component {
                 <div className="iron-image-loaded visible content" 
                     ref={imageLoadedElem => this.newImghd = imageLoadedElem}>
                 </div>
-                <div className="iron-image-preload visible content" 
-                     style={{ backgroundImage: `url('${this.props.image.urls.small}')` }}>
-                </div>
-
-                <div className="hidden content" style={{backgroundColor: `${ this.props.image.color }`, opacity: '0.5'}}>
-
+                <div className="iron-image-preload hidden content" 
+                     style={{ backgroundImage: `url('${this.props.image.urls.thumb}')`, filter:`blur(5px)` }}>
                 </div>
             </div>
         )
