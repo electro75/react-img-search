@@ -17,6 +17,9 @@ class App extends React.Component {
         super(props);
 
         window.onscroll = () => {
+            console.log('innerHeight: ', window.innerHeight);
+            console.log('scrolltop: ', document.documentElement.scrollTop);
+            console.log('container: ', this.containerRef.current.clientHeight);
             if(window.innerHeight + document.documentElement.scrollTop === this.containerRef.current.clientHeight) {
                 this.onSearchSubmit(this.state.term, (this.state.page + 1), 'addon')
             }
@@ -32,8 +35,6 @@ class App extends React.Component {
         const response = await unsplash.get('/search/photos', {
             params: { query: term, page },
         });
-
-        console.log(response.data.results);
 
         if(type === 'reload') {
             this.setState({images: response.data.results, page, term, isLoading: false});
